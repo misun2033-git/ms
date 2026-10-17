@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="수업에 필요한 도구를 한곳에서 빠르게 여는 교사용 허브">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <title>늘봄 교실 허브</title>
+</head>
+<body>
+  <a class="skip-link" href="#main">본문 바로가기</a>
+  <header class="topbar">
+    <a class="brand" href="#home" aria-label="늘봄 교실 허브 홈">
+      <span class="brand-mark" aria-hidden="true">늘</span>
+      <span>늘봄 교실 허브</span>
+    </a>
+    <nav aria-label="주요 메뉴">
+      <a href="#home">홈</a>
+      <a href="#timer">시간 도구</a>
+      <a href="#score">점수판</a>
+      <a href="#noise">소음 측정</a>
+      <a href="#diary">일기장</a>
+      <a href="#pdf-count">PDF 글자 수</a>
+    </nav>
+    <button id="installButton" class="outline-button hidden" type="button">앱 설치</button>
+  </header>
+
+  <main id="main">
+    <section id="home" class="view active" data-view="home" aria-labelledby="home-title">
+      <div class="hero">
+        <p class="eyebrow">교사를 위한 첫 번째 도구 상자</p>
+        <h1 id="home-title">수업의 흐름을<br>가볍게 이어가세요.</h1>
+        <p class="hero-copy">타이머, 점수판, 소음 측정기를 한 화면에 모았습니다. 인터넷이 끊겨도, 수업은 계속됩니다.</p>
+        <div class="hero-actions">
+          <a class="primary-button" href="#timer">도구 시작하기</a>
+          <span id="offlineBadge" class="status-label">오프라인 준비 중</span>
+        </div>
+      </div>
+
+      <section class="tool-stage" aria-labelledby="tools-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">교실 도구 모음 01</p>
+            <h2 id="tools-title">오늘 바로 쓰는 도구</h2>
+          </div>
+          <p>각 도구는 큰 화면과 키보드 사용에 맞췄습니다.</p>
+        </div>
+        <div class="tool-grid">
+          <a class="tool-card" href="#timer">
+            <span class="tool-icon" aria-hidden="true">◷</span>
+            <div><h3>타이머 & 스톱워치</h3><p>활동 시간을 선명하게 보여주고 랩을 기록해요.</p></div>
+            <span class="card-link">열기 <span aria-hidden="true">→</span></span>
+          </a>
+          <a class="tool-card" href="#score">
+            <span class="tool-icon" aria-hidden="true">＋</span>
+            <div><h3>모둠 점수판</h3><p>모둠 이름과 점수를 자동으로 기억해요.</p></div>
+            <span class="card-link">열기 <span aria-hidden="true">→</span></span>
+          </a>
+          <a class="tool-card" href="#noise">
+            <span class="tool-icon" aria-hidden="true">⌁</span>
+            <div><h3>소음 측정기</h3><p>녹음 없이 교실의 현재 소리 크기만 확인해요.</p></div>
+            <span class="card-link">열기 <span aria-hidden="true">→</span></span>
+          </a>
+          <a class="tool-card" href="#pdf-count">
+            <span class="tool-icon" aria-hidden="true">文</span>
+            <div><h3>PDF 글자 수 세기</h3><p>PDF를 올리지 않고 이 컴퓨터 안에서 글자 수와 단어 수를 확인해요.</p></div>
+            <span class="card-link">열기 <span aria-hidden="true">→</span></span>
+          </a>
+          <a class="tool-card diary-tool-card" href="#diary">
+            <span class="tool-icon" aria-hidden="true">✎</span>
+            <div><h3>나의 일기장</h3><p>오늘의 마음과 기록을 선택한 로컬 폴더에 안전하게 모아요.</p></div>
+            <span class="card-link">열기 <span aria-hidden="true">→</span></span>
+          </a>
+        </div>
+      </section>
+    </section>
+
+    <section id="timer" class="view app-view" data-view="timer" aria-labelledby="timer-title">
+      <div class="app-header"><div><p class="eyebrow">시간 도구</p><h1 id="timer-title">타이머 & 스톱워치</h1></div><a href="#home">허브로 돌아가기</a></div>
+      <div class="segmented" role="tablist" aria-label="시간 도구 선택">
+        <button class="active" data-time-tab="countdown" role="tab" aria-selected="true">타이머</button>
+        <button data-time-tab="stopwatch" role="tab" aria-selected="false">스톱워치</button>
+      </div>
+      <section id="countdownPanel" class="time-panel" role="tabpanel">
+        <div id="timerDisplay" class="time-display" aria-live="polite">05:00</div>
+        <div class="preset-row" aria-label="빠른 시간 설정">
+          <button data-seconds="60">1분</button><button data-seconds="180">3분</button><button data-seconds="300">5분</button><button data-seconds="600">10분</button>
+        </div>
+        <div class="custom-time"><label>분 <input id="minuteInput" type="number" min="0" max="180" value="5"></label><label>초 <input id="secondInput" type="number" min="0" max="59" value="0"></label><button id="setTimer" class="outline-button" type="button">설정</button></div>
+        <div class="control-row"><button id="startTimer" class="primary-button" type="button">시작</button><button id="resetTimer" class="outline-button" type="button">초기화</button></div>
+        <p id="timerNotice" class="assistive-note" aria-live="assertive"></p>
+      </section>
+      <section id="stopwatchPanel" class="time-panel hidden" role="tabpanel">
+        <div id="stopwatchDisplay" class="time-display" aria-live="polite">00:00.0</div>
+        <div class="control-row"><button id="startStopwatch" class="primary-button" type="button">시작</button><button id="lapStopwatch" class="outline-button" type="button" disabled>랩</button><button id="resetStopwatch" class="outline-button" type="button">초기화</button></div>
+        <ol id="lapList" class="lap-list" aria-label="랩 기록"></ol>
+      </section>
+    </section>
+
+    <section id="score" class="view app-view" data-view="score" aria-labelledby="score-title">
+      <div class="app-header"><div><p class="eyebrow">수업 참여</p><h1 id="score-title">모둠 점수판</h1></div><a href="#home">허브로 돌아가기</a></div>
+      <div class="score-toolbar"><p>이름과 점수는 이 PC에 자동 저장됩니다.</p><div><button id="addTeam" class="outline-button" type="button">모둠 추가</button><button id="resetScores" class="text-button danger" type="button">점수 초기화</button></div></div>
+      <div id="scoreGrid" class="score-grid" aria-live="polite"></div>
+    </section>
+
+    <section id="noise" class="view app-view" data-view="noise" aria-labelledby="noise-title">
+      <div class="app-header"><div><p class="eyebrow">교실 환경</p><h1 id="noise-title">소음 측정기</h1></div><a href="#home">허브로 돌아가기</a></div>
+      <div class="noise-layout">
+        <section class="noise-stage" aria-label="현재 소음 상태">
+          <div id="noiseOrb" class="noise-orb calm"><span id="noiseValue">—</span><small>상대 음량</small></div>
+          <h2 id="noiseMessage">마이크를 켜면 시작합니다</h2>
+          <p id="noisePrivacy">소리는 녹음되거나 저장되지 않습니다.</p>
+          <button id="toggleNoise" class="primary-button" type="button">마이크 켜기</button>
+        </section>
+        <aside class="settings-card">
+          <h2>우리 반 기준</h2>
+          <label for="noiseThreshold">주의 알림 기준 <strong id="thresholdLabel">55</strong></label>
+          <input id="noiseThreshold" type="range" min="20" max="90" value="55">
+          <div class="legend"><span><i class="calm-dot"></i>좋아요</span><span><i class="watch-dot"></i>조금 커요</span><span><i class="loud-dot"></i>잠깐, 목소리를 낮춰요</span></div>
+          <p class="assistive-note">표시값은 기기마다 다른 상대값이며 공인 데시벨 측정값이 아닙니다.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section id="diary" class="view app-view" data-view="diary" aria-labelledby="diary-title">
+      <div class="app-header"><div><p class="eyebrow">나만의 기록</p><h1 id="diary-title">일기장</h1></div><a href="#home">허브로 돌아가기</a></div>
+      <div class="diary-storage" role="status">
+        <div><span class="storage-dot" aria-hidden="true"></span><strong id="diaryStorageTitle">저장 폴더를 연결해 주세요</strong><p id="diaryStorageText">일기는 서버로 전송되지 않고, 선택한 폴더의 JSON 파일에 저장됩니다.</p></div>
+        <div class="storage-actions"><button id="connectDiaryFolder" class="outline-button" type="button">폴더 연결</button><button id="importDiary" class="text-button" type="button">가져오기</button><button id="exportDiary" class="text-button" type="button">내보내기</button><input id="diaryImportFile" type="file" accept="application/json,.json" hidden></div>
+      </div>
+      <div class="diary-layout">
+        <aside class="diary-sidebar">
+          <div class="diary-sidebar-head"><h2>기록</h2><button id="newDiary" class="primary-button" type="button">새 일기</button></div>
+          <label class="diary-search"><span class="sr-only">일기 검색</span><input id="diarySearch" type="search" placeholder="제목이나 내용 검색"></label>
+          <div id="diaryList" class="diary-list" aria-live="polite"></div>
+        </aside>
+        <section class="diary-editor" aria-labelledby="editor-title">
+          <div class="editor-topline"><label>날짜<input id="diaryDate" type="date"></label><fieldset><legend>오늘의 마음</legend><div class="mood-row"><button type="button" data-mood="좋음" aria-label="기분 좋음">😊</button><button type="button" data-mood="평온" aria-label="기분 평온">🙂</button><button type="button" data-mood="보통" aria-label="기분 보통">😐</button><button type="button" data-mood="속상" aria-label="기분 속상">😔</button><button type="button" data-mood="화남" aria-label="기분 화남">😠</button></div></fieldset></div>
+          <label class="editor-field"><span id="editor-title">제목</span><input id="diaryEntryTitle" type="text" maxlength="80" placeholder="오늘을 한 문장으로 남겨 보세요"></label>
+          <label class="editor-field"><span>내용</span><textarea id="diaryContent" rows="13" maxlength="10000" placeholder="오늘 있었던 일, 고마웠던 일, 내일 하고 싶은 일을 자유롭게 적어 보세요."></textarea></label>
+          <div class="editor-footer"><span id="diarySaveState" class="assistive-note">작성한 뒤 저장해 주세요.</span><div><button id="deleteDiary" class="text-button danger" type="button">삭제</button><button id="saveDiary" class="primary-button" type="button">일기 저장</button></div></div>
+        </section>
+      </div>
+    </section>
+
+    <section id="pdf-count" class="view app-view" data-view="pdf-count" aria-labelledby="pdf-title">
+      <div class="app-header"><div><p class="eyebrow">문서 도구</p><h1 id="pdf-title">PDF 글자 수 세기</h1></div><a href="#home">허브로 돌아가기</a></div>
+      <div class="privacy-banner" role="note"><span aria-hidden="true">✓</span><div><strong>파일은 이 컴퓨터 안에서만 처리됩니다</strong><p>PDF와 추출 결과를 서버로 전송하거나 저장하지 않습니다. 페이지를 닫으면 결과도 사라집니다.</p></div></div>
+      <label id="pdfDropzone" class="pdf-dropzone" for="pdfFile">
+        <input id="pdfFile" type="file" accept="application/pdf,.pdf">
+        <span class="drop-icon" aria-hidden="true">PDF</span><strong>PDF 파일을 선택하거나 여기에 놓으세요</strong><span>텍스트가 포함된 PDF 1개 · 최대 100MB</span><span class="primary-button">파일 선택</span>
+      </label>
+      <section id="pdfWorking" class="pdf-working hidden" aria-live="polite"><div class="spinner" aria-hidden="true"></div><div><strong>PDF를 읽고 있습니다</strong><p id="pdfProgress">잠시만 기다려 주세요.</p></div></section>
+      <section id="pdfResult" class="pdf-result hidden" aria-labelledby="pdf-result-title">
+        <div class="result-heading"><div><p class="eyebrow">분석 완료</p><h2 id="pdf-result-title">글자 수 결과</h2><p id="pdfFileMeta"></p></div><button id="resetPdf" class="outline-button" type="button">다른 파일 선택</button></div>
+        <div class="metric-grid"><article class="metric-card primary-metric"><span>공백 제외</span><strong id="pdfCharsNoSpace">0</strong><small>글자</small></article><article class="metric-card"><span>공백 포함</span><strong id="pdfCharsWithSpace">0</strong><small>글자</small></article><article class="metric-card"><span>단어 수</span><strong id="pdfWords">0</strong><small>단어</small></article><article class="metric-card"><span>페이지 수</span><strong id="pdfPages">0</strong><small>쪽</small></article></div>
+        <div class="result-actions"><button id="copyPdfResult" class="primary-button" type="button">결과 복사</button><button id="downloadPdfResult" class="outline-button" type="button">텍스트 파일 저장</button></div>
+        <details class="page-details"><summary>페이지별 글자 수 보기</summary><div class="table-wrap"><table><thead><tr><th>페이지</th><th>공백 제외</th><th>공백 포함</th><th>단어</th></tr></thead><tbody id="pdfPageRows"></tbody></table></div></details>
+        <p class="assistive-note">스캔한 이미지 PDF에는 텍스트가 없어 0자로 표시될 수 있습니다. 한글·영문·숫자·문장부호를 글자로 계산하고, 공백 제외 값에서는 모든 공백 문자를 뺍니다.</p>
+      </section>
+      <section id="pdfError" class="pdf-error hidden" role="alert"><strong>PDF를 읽지 못했습니다</strong><p id="pdfErrorMessage"></p><button id="retryPdf" class="outline-button" type="button">다시 선택</button></section>
+    </section>
+  </main>
+
+  <footer><span>늘봄 교실 허브</span><span>학생 개인정보 없이, 교실 PC 안에서.</span></footer>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="app.js" defer></script>
+</body>
+</html>
