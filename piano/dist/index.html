@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#fff8ef" />
+  <title>피아노 새싹</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <section id="authGate" class="auth-gate" aria-labelledby="authTitle">
+    <div class="auth-card">
+      <p class="eyebrow">나만의 연습 기록</p>
+      <h1 id="authTitle">피아노 새싹 로그인</h1>
+      <p class="auth-copy">간단한 아이디와 비밀번호로 가입하고 연습 기록을 이어가세요.</p>
+      <form id="authForm" class="auth-form">
+        <label>아이디<input id="userId" type="text" minlength="3" maxlength="24" pattern="[A-Za-z0-9_-]+" autocomplete="username" required placeholder="영문·숫자 3자 이상"></label>
+        <label>비밀번호<input id="password" type="password" minlength="6" autocomplete="current-password" required placeholder="6자 이상"></label>
+        <div class="auth-actions"><button id="signInBtn" class="primary-btn" type="submit">로그인</button><button id="signUpBtn" class="soft-btn" type="button">처음 가입</button></div>
+      </form>
+      <p id="authMessage" class="auth-message" role="status"></p>
+      <p class="teacher-help">비밀번호를 잊었다면 담당 교사에게 문의해 주세요.</p>
+    </div>
+  </section>
+  <main class="shell">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">오늘도 한 음씩 🌱</p>
+        <h1>피아노 새싹</h1>
+        <p class="subtitle">처음 배우는 사람을 위한 가장 가벼운 피아노 연습실</p>
+      </div>
+      <div class="streak" aria-label="오늘의 연습 목표">
+        <span>오늘의 목표</span>
+        <strong><b id="playedCount">0</b> / 20음</strong>
+        <button id="signOutBtn" class="text-btn account-btn" type="button">로그아웃</button>
+      </div>
+    </header>
+
+    <section class="practice-card" aria-labelledby="songTitle">
+      <div class="song-info">
+        <div>
+          <p class="label">초급 연습곡</p>
+          <h2 id="songTitle">작은 별</h2>
+          <p id="guideText">빛나는 첫 음, 도를 눌러보세요.</p>
+        </div>
+        <div class="song-actions">
+          <button id="listenBtn" class="soft-btn">▶ 모범 연주</button>
+          <button id="resetPracticeBtn" class="soft-btn">↻ 처음부터</button>
+        </div>
+      </div>
+      <div id="score" class="score" aria-label="계이름 악보"></div>
+      <div class="progress-track"><div id="songProgress" class="progress-fill"></div></div>
+    </section>
+
+    <section class="studio" aria-label="피아노 연주 영역">
+      <div class="toolbar">
+        <div class="control-group">
+          <span class="label">건반 안내</span>
+          <button id="labelToggle" class="toggle active" aria-pressed="true">계이름 켜짐</button>
+        </div>
+        <div class="control-group tempo-control">
+          <label for="tempo">연습 속도 <strong id="tempoValue">80</strong> BPM</label>
+          <input id="tempo" type="range" min="50" max="130" value="80" />
+        </div>
+        <div class="recording-controls">
+          <button id="recordBtn" class="record-btn"><span></span> 녹음</button>
+          <button id="playBtn" class="primary-btn" disabled>내 연주 듣기</button>
+          <button id="clearBtn" class="text-btn" disabled>지우기</button>
+        </div>
+      </div>
+
+      <div class="status" id="status" role="status">화면의 건반이나 키보드 A–K를 눌러보세요.</div>
+      <div id="piano" class="piano" aria-label="두 옥타브 피아노 건반"></div>
+      <div class="keyboard-help"><kbd>A</kbd><kbd>W</kbd><kbd>S</kbd><kbd>E</kbd><kbd>D</kbd><kbd>F</kbd><kbd>T</kbd><kbd>G</kbd><kbd>Y</kbd><kbd>H</kbd><kbd>U</kbd><kbd>J</kbd><kbd>K</kbd></div>
+    </section>
+
+    <section class="history-card" aria-labelledby="historyTitle">
+      <div><p class="label">학습 기록</p><h2 id="historyTitle">나의 최근 연습</h2></div>
+      <button id="savePracticeBtn" class="primary-btn" type="button">지금 기록 저장</button>
+      <div id="practiceHistory" class="practice-history"><p>저장된 연습 기록이 아직 없어요.</p></div>
+    </section>
+
+    <footer>소리는 기기에서만 재생되고, 녹음 내용은 서버에 전송되지 않아요.</footer>
+  </main>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
