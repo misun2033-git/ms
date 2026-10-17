@@ -1,0 +1,12 @@
+{
+  "name": "늘봄 교실 허브",
+  "short_name": "교실 허브",
+  "description": "교실 Windows PC에서 사용하는 타이머, 점수판, 소음 측정, PDF 글자 수 도구 모음",
+  "lang": "ko",
+  "start_url": "./#home",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "icons": [{"src":"icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
+}
